@@ -11,6 +11,7 @@ import taskRoutes from "./routes/taskRoutes.js";
 import dashboardRoutes from "./routes/dashboardRoutes.js";
 
 import errorHandler from "./middleware/errorMiddleware.js";
+import cors from "cors";
 
 dotenv.config();
 
@@ -21,6 +22,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(
+  cors({
+    origin: "*",
+    credentials: true
+  })
+);
 
 app.get("/", (req, res) => {
   res.send("API Running...");
